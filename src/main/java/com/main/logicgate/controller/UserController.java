@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -18,10 +18,11 @@ import java.util.Optional;
 @SpringBootApplication
 @RestController
 @RequestMapping("api/users")
+@CrossOrigin
 public class UserController {
     private final UserRepository userRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
 
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -48,9 +49,7 @@ public class UserController {
     public ResponseEntity<String> addUser(@RequestBody NewUserRequest request) {
         try {
             UserModel newUser = new UserModel();
-            String hashedPassword = passwordEncoder.encode(request.password);
-
-
+//            String hashedPassword = passwordEncoder.encode(request.password);
             newUser.setName(request.name);
             newUser.setLastName(request.lastName);
             newUser.setEmail(request.email);
@@ -58,7 +57,7 @@ public class UserController {
             newUser.setUserRole(request.userRole);
             newUser.setDateCreated(request.dateUpdated);
             newUser.setArticles(request.articles);
-            newUser.setPassword(hashedPassword);
+//            newUser.setPassword(hashedPassword);
 
             userRepository.save(newUser);
 

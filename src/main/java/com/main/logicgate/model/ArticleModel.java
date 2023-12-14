@@ -1,10 +1,12 @@
 package com.main.logicgate.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.main.logicgate.common.enums.ProgrammingLanguage;
 import com.main.logicgate.common.enums.TechTag;
 
 import java.util.Date;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -14,8 +16,9 @@ public class ArticleModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long articleId;
-
+    @NotBlank(message = "Article must have a title")
     private String title;
+    @NotBlank(message = "Body can not be empty")
     private String body;
     @Enumerated(EnumType.STRING)
     private TechTag techTag;
@@ -34,6 +37,7 @@ public class ArticleModel {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private UserModel author;
 
     public ArticleModel(Long articleId, String title, String body, TechTag techTag, String photo, ProgrammingLanguage programmingLanguage, Date dateCreated, Date dateUpdated, UserModel author) {
@@ -47,6 +51,8 @@ public class ArticleModel {
         this.dateUpdated = dateUpdated;
         this.author = author;
     }
+
+    public ArticleModel() {}
 
     public Long getArticleId() {
         return articleId;
