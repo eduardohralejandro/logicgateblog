@@ -2,6 +2,7 @@ package com.main.logicgate.controller;
 
 import com.main.logicgate.common.enums.ProgrammingLanguage;
 import com.main.logicgate.common.enums.TechTag;
+import com.main.logicgate.dto.NewArticleRequestDTO;
 import com.main.logicgate.model.ArticleModel;
 import com.main.logicgate.model.UserModel;
 import com.main.logicgate.repository.ArticleRepository;
@@ -17,14 +18,13 @@ import java.util.Optional;
 
 @SpringBootApplication
 @RestController
-@RequestMapping("api/articles")
+@RequestMapping("api/v1/articles")
 @CrossOrigin
 public class ArticleController {
     private final ArticleRepository articleRepository;
-    private final UserRepository userRepository;
-    public ArticleController(ArticleRepository articleRepository, UserRepository userRepository) {
+
+    public ArticleController(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
-        this.userRepository = userRepository;
     }
 
     @GetMapping
@@ -32,28 +32,17 @@ public class ArticleController {
         return articleRepository.findAll();
     }
 
-    record NewArticleRequest(
-            String title,
-            String body,
-            String photo,
-            ProgrammingLanguage programmingLanguage,
-            TechTag techTag,
-            UserModel author
-    ) {}
-
     @PostMapping
-    public ResponseEntity<String> addArticle(@RequestBody NewArticleRequest request) {
+    public ResponseEntity<String> addArticle(@RequestBody NewArticleRequestDTO request) {
         try {
             ArticleModel newArticle = new ArticleModel();
 
-            newArticle.setTitle(request.title);
-            newArticle.setBody(request.body);
-            newArticle.setTechTag(request.techTag);
-            newArticle.setPhoto(request.photo);
-            newArticle.setProgrammingLanguage(request.programmingLanguage);
-            newArticle.setAuthor(request.author);
-
-
+            newArticle.setTitle(request.getTitle());
+            newArticle.setBody(request.getBody());
+            newArticle.setTechTag(request.getTechTag());
+            newArticle.setPhoto(request.getPhoto());
+            newArticle.setProgrammingLanguage(request.getProgrammingLanguage());
+            newArticle.setAuthor(request.getAuthor());
             articleRepository.save(newArticle);
 
             return ResponseEntity.status(HttpStatus.CREATED).body("Article created successfully");

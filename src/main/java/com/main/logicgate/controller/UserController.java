@@ -1,5 +1,6 @@
 package com.main.logicgate.controller;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.main.logicgate.common.enums.UserRole;
 import com.main.logicgate.model.ArticleModel;
 import com.main.logicgate.model.UserModel;
@@ -13,12 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootApplication
 @RestController
-@RequestMapping("api/users")
+@RequestMapping("api/v1/users")
 @CrossOrigin
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserController {
     private final UserRepository userRepository;
 //    @Autowired
@@ -45,6 +46,7 @@ public class UserController {
             List<ArticleModel> articles
     ) {}
 
+    // this method will be used inside the admin panel to add users once a someone is registered and has user ADMIN role
     @PostMapping
     public ResponseEntity<String> addUser(@RequestBody NewUserRequest request) {
         try {
