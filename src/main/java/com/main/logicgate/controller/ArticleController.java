@@ -1,7 +1,6 @@
 package com.main.logicgate.controller;
 
-import com.main.logicgate.common.enums.ProgrammingLanguage;
-import com.main.logicgate.common.enums.TechTag;
+import com.main.logicgate.common.enums.UserRole;
 import com.main.logicgate.dto.NewArticleRequestDTO;
 import com.main.logicgate.model.ArticleModel;
 import com.main.logicgate.model.UserModel;
@@ -22,9 +21,11 @@ import java.util.Optional;
 @CrossOrigin
 public class ArticleController {
     private final ArticleRepository articleRepository;
+    private final UserRepository userRepository;
 
-    public ArticleController(ArticleRepository articleRepository) {
+    public ArticleController(ArticleRepository articleRepository, UserRepository userRepository) {
         this.articleRepository = articleRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping
@@ -34,6 +35,18 @@ public class ArticleController {
 
     @PostMapping
     public ResponseEntity<String> addArticle(@RequestBody NewArticleRequestDTO request) {
+        Optional<UserModel> currentUser = userRepository.findById(request.getAuthor().getId());
+
+        if (currentUser.isPresent()) {
+            UserRole authorRole = currentUser.get().getUserRole();
+
+            if(authorRole == UserRole.REGULAR) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("" +
+                        "User role REGULAR has no enough user's permission to create" +
+                        "an article, you must be an ADMIN");
+            }
+        }
+
         try {
             ArticleModel newArticle = new ArticleModel();
 

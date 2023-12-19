@@ -30,7 +30,7 @@ public class UserModel implements UserDetails {
     private String photo;
 
     @Enumerated(EnumType.STRING)
-    private UserRole userRole = UserRole.REGULAR;
+    private UserRole userRole;
 
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)

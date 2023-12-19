@@ -1,5 +1,6 @@
 package com.main.logicgate.configuration;
 
+import com.main.logicgate.common.enums.UserRole;
 import com.main.logicgate.dto.AuthenticationrRequestDTO;
 import com.main.logicgate.dto.RegisterRequestDTO;
 import com.main.logicgate.dto.AuthenticationResponseDTO;
@@ -27,7 +28,7 @@ public class AuthService {
         newUser.setLastName(request.getLastName());
         newUser.setEmail(request.getEmail());
         newUser.setPhoto(request.getPhoto());
-        newUser.setUserRole(request.getUserRole());
+        newUser.setUserRole(UserRole.REGULAR);
         newUser.setDateCreated(request.getDateCreated());
         newUser.setArticles(request.getArticles());
         newUser.setPassword(passwordEncoder.encode(request.getPassword()));
