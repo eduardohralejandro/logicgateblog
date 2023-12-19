@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping("api/v1/articles")
 @RequiredArgsConstructor
@@ -28,7 +29,7 @@ public class ArticleController {
 
     @PostMapping
     public ResponseEntity<String> addArticle(@RequestBody NewArticleRequestDTO request) {
-        Optional<UserModel> currentUser = userRepository.findById(request.getAuthor().getId());
+        Optional<UserModel> currentUser = userRepository.findById(request.getAuthor().getUserId());
 
         if (currentUser.isPresent()) {
             UserRole authorRole = currentUser.get().getUserRole();
