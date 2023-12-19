@@ -12,7 +12,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -37,7 +36,6 @@ public class AuthService {
         var jwtToken = jwtService.generateToken(newUser);
 
         return AuthenticationResponseDTO.builder().token(jwtToken).build();
-
     }
 
     public AuthenticationResponseDTO authenticate(AuthenticationrRequestDTO request) {
