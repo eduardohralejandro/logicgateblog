@@ -3,13 +3,11 @@ package com.main.logicgate.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.main.logicgate.common.enums.UserRole;
 import com.main.logicgate.model.ArticleModel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
+
 
 @Data
 @Builder
