@@ -1,10 +1,12 @@
-package com.main.logicgate.model;
+package com.main.logicgate.article;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.main.logicgate.common.enums.ProgrammingLanguage;
 import com.main.logicgate.common.enums.TechTag;
 
 import java.util.Date;
+
+import com.main.logicgate.author.Author;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -16,7 +18,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class ArticleModel {
+public class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,5 +48,5 @@ public class ArticleModel {
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
-    private UserModel author;
+    private Author author;
 }

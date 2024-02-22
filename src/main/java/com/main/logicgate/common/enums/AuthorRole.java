@@ -1,6 +1,6 @@
 package com.main.logicgate.common.enums;
 
-public enum UserRole {
+public enum AuthorRole {
     ADMIN,
     REGULAR
 }
