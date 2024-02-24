@@ -11,6 +11,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -20,11 +22,12 @@ import org.springframework.data.annotation.LastModifiedDate;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "author")
 public class Author {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long authorId;
+
     private String name;
     private String lastName;
     private String email;
@@ -34,23 +37,15 @@ public class Author {
     @Enumerated(EnumType.STRING)
     private AuthorRole authorRole;
 
-    @CreatedDate
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
 
-    @LastModifiedDate
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateUpdated;
 
     @OneToMany(mappedBy = "author")
     private List<Article> articles;
-
-    public List<Article> getArticles() {
-        return articles;
-    }
-
-    public Long getId() {
-        return userId;
-    }
-
 }
 
