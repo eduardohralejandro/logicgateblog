@@ -10,8 +10,8 @@ import com.main.logicgate.author.Author;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 
 @Data
@@ -19,7 +19,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Article {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long articleId;
@@ -27,7 +26,7 @@ public class Article {
     @NotBlank(message = "Article must have a title")
     private String title;
 
-    @NotBlank(message = "Body can not be empty")
+    @NotBlank(message = "Body of an article can not be empty")
     private String body;
 
     @Enumerated(EnumType.STRING)
@@ -37,16 +36,16 @@ public class Article {
     @Enumerated(EnumType.STRING)
     private ProgrammingLanguage programmingLanguage;
 
-    @CreatedDate
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
 
-    @LastModifiedDate
+    @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateUpdated;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "author_id")
     @JsonIgnore
     private Author author;
 }

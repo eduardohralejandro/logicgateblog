@@ -12,11 +12,14 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin
 public class AuthorController {
-
-    private final AuthorRepository authorRepository;
-
+    private final AuthorService authorService;
     @GetMapping
-    public List<Author> getUsers() {
-        return authorRepository.findAll();
+    public List<Author> getAllAuthors() {
+        return this.authorService.getAllAuthors();
+    }
+
+    @PostMapping("/create/{authorId}")
+    public void createNewAuthor(@RequestBody Author newAuthor, @PathVariable Long authorId) {
+        this.authorService.createAuthor(newAuthor, authorId);
     }
 }
