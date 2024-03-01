@@ -25,7 +25,7 @@ public class ArticleImpl implements ArticleService {
     @Override
     public void createNewArticle(Article newRequestArticle, Long authorId) {
         Author author = this.authorRepository.findById(authorId)
-                                             .orElseThrow(() -> new NotFoundException("Author not found with id: " + authorId));
+                .orElseThrow(() -> new NotFoundException("Author not found with id: " + authorId));
         if (!author.getAuthorRole().equals(AuthorRole.ADMIN)) throw new ForbiddenException("Not enough credentials");
         newRequestArticle.setAuthor(author);
         articleRepository.save(newRequestArticle);
