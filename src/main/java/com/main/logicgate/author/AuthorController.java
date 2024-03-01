@@ -4,6 +4,7 @@ import com.main.logicgate.author.Author;
 import com.main.logicgate.author.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 
@@ -13,6 +14,7 @@ import java.util.List;
 @CrossOrigin
 public class AuthorController {
     private final AuthorService authorService;
+
     @GetMapping
     public List<Author> getAllAuthors() {
         return this.authorService.getAllAuthors();

@@ -7,7 +7,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("api/v1/articles")
+@RequestMapping("/articles")
 @RequiredArgsConstructor
 @CrossOrigin
 public class ArticleController {
