@@ -8,4 +8,5 @@ public interface ArticleService {
     List<Article> getAllArticles();
 
     Article getArticle(Long articleId);
+    void deleteArticle(Long articleId);
 }

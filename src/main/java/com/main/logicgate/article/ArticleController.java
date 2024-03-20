@@ -28,4 +28,10 @@ public class ArticleController {
     public void createNewArticle(@RequestBody Article article, @PathVariable Long authorId) {
         this.articleService.createNewArticle(article, authorId);
     }
+
+    @CrossOrigin
+    @DeleteMapping("/delete/{articleId}")
+    public void deleteArticle(@PathVariable Long articleId) {
+        this.articleService.deleteArticle(articleId);
+    }
 }
