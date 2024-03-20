@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/articles")
 @RequiredArgsConstructor
-@CrossOrigin
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class ArticleController {
     private final ArticleService articleService;
 
@@ -23,6 +23,7 @@ public class ArticleController {
         return this.articleService.getArticle(articleId);
     }
 
+    @CrossOrigin
     @PostMapping("/create/{authorId}")
     public void createNewArticle(@RequestBody Article article, @PathVariable Long authorId) {
         this.articleService.createNewArticle(article, authorId);
