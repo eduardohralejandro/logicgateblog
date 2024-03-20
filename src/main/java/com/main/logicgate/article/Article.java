@@ -24,9 +24,11 @@ public class Article {
     private Long articleId;
 
     @NotBlank(message = "Article must have a title")
+    @Column(length = 2048)
     private String title;
 
     @NotBlank(message = "Body of an article can not be empty")
+    @Column(columnDefinition = "TEXT")
     private String body;
 
     @Enumerated(EnumType.STRING)

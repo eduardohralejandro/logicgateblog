@@ -36,7 +36,7 @@ public class AuthenticationService {
             throw new BadRequestException("It was not possible to register the user " + exception);
         }
 
-        var jwtToken = jwtService.generateToken(user);
+        var jwtToken = jwtService.generateToken(user, user.getAuthorId());
         return AuthenticationResponse.builder().token(jwtToken)
                 .build();
     }
@@ -51,7 +51,8 @@ public class AuthenticationService {
 
         var user = authorRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new NotFoundException("User not found"));
-        var jwtToken = jwtService.generateToken(user);
+
+        var jwtToken = jwtService.generateToken(user,  user.getAuthorId());
         return AuthenticationResponse.builder().token(jwtToken)
                 .build();
     }
