@@ -27,7 +27,6 @@ public class ArticleImpl implements ArticleService {
         Author author = this.authorRepository.findById(authorId)
                 .orElseThrow(() -> new NotFoundException("Author not found with id: " + authorId));
         if (!author.getAuthorRole().equals(AuthorRole.ADMIN)) throw new ForbiddenException("Not enough credentials");
-        System.out.println(newRequestArticle);
         newRequestArticle.setAuthor(author);
         articleRepository.save(newRequestArticle);
     }
@@ -40,5 +39,12 @@ public class ArticleImpl implements ArticleService {
     @Override
     public Article getArticle(Long articleId) {
         return this.articleRepository.findById(articleId).orElseThrow(() -> new NotFoundException("Article not found with id: " + articleId));
+    }
+
+    @Override
+    public void deleteArticle(Long articleId) {
+        Article article = this.articleRepository.findById(articleId)
+                .orElseThrow(() -> new NotFoundException("Article not found with id: " + articleId));
+        this.articleRepository.deleteById(articleId);
     }
 }
