@@ -42,4 +42,5 @@ public class SecurityConfiguration {
                 .authenticationProvider(authenticationProvider);
         return http.build();
     }
+
 }
