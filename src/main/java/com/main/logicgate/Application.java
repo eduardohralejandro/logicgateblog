@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.Collections;
+
 @EntityScan
 @SpringBootApplication
 public class Application {
@@ -22,6 +25,8 @@ public class Application {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
+		config.setAllowedHeaders(Collections.singletonList("*"));
+		config.setAllowedOrigins(Collections.singletonList("*"));
 		config.addAllowedOrigin("*");
 		config.addAllowedHeader("*");
 		config.addAllowedMethod("GET");
