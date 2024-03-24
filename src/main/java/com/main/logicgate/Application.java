@@ -35,6 +35,8 @@ public class Application {
 		config.addAllowedMethod("DELETE");
 		config.addAllowedMethod("OPTIONS");
 		source.registerCorsConfiguration("/**", config);
+
+
 		return new CorsFilter(source);
 	}
 }
