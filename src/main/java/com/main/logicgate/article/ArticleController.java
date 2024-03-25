@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/articles")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "https://logicgatesblog-9da8a03a3c58.herokuapp.com")
+@CrossOrigin(origins = "*")
 public class ArticleController {
     private final ArticleService articleService;
 
