@@ -55,7 +55,7 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("https://logicgatesblog-9da8a03a3c58.herokuapp.com/articles/all"));
+        configuration.setAllowedOrigins(Arrays.asList("https://logicgatesblog-9da8a03a3c58.herokuapp.com/articles/all", "https://logicgatesblog-9da8a03a3c58.herokuapp.com/api/v1/auth/register" ));
 //        configuration.addAllowedOrigin("*");
         configuration.setAllowedMethods(Arrays.asList("GET"));
         configuration.setAllowedHeaders(List.of("Authorization"));
