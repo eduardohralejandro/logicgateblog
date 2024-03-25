@@ -55,12 +55,14 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));
-
+        configuration.addAllowedOrigin("https://logicgatesblog-9da8a03a3c58.herokuapp.com");
         configuration.setAllowedMethods(Arrays.asList("GET"));
         configuration.setAllowedHeaders(List.of("Authorization"));
         configuration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Origin"));
         configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
         configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
