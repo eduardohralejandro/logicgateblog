@@ -82,6 +82,7 @@ public class SecurityConfiguration {
 //}
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
+        System.out.println("TEST ");
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("https://logicgatesblog-9da8a03a3c58.herokuapp.com")); // Set your allowed origins
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Include necessary methods
