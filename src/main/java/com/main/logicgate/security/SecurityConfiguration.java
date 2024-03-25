@@ -31,6 +31,7 @@ public class SecurityConfiguration {
             "/articles/all",
             "/register",
             "/api/v1/auth/**",
+            "/api/v1/auth/register",
             "/articles/{articleId}"
     };
 
