@@ -10,6 +10,7 @@ import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.cors.CorsConfiguration;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 @EntityScan
@@ -34,6 +35,7 @@ public class Application {
 		config.addAllowedMethod("PUT");
 		config.addAllowedMethod("DELETE");
 		config.addAllowedMethod("OPTIONS");
+		config.setAllowedOrigins(Arrays.asList("https://logicgatesblog-9da8a03a3c58.herokuapp.com/"));
 		source.registerCorsConfiguration("/**", config);
 
 
