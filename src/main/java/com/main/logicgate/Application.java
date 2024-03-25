@@ -26,8 +26,12 @@ public class Application {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
-		config.setAllowedHeaders(Collections.singletonList("*"));
-		config.setAllowedOrigins(Collections.singletonList("*"));
+		config.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Origin"));
+		config.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
+		config.setExposedHeaders(Arrays.asList("x-auth-token"));
+
+//		config.setAllowedHeaders(Collections.singletonList("*"));
+//		config.setAllowedOrigins(Collections.singletonList("*"));
 		config.addAllowedOrigin("*");
 		config.addAllowedHeader("*");
 		config.addAllowedMethod("GET");
