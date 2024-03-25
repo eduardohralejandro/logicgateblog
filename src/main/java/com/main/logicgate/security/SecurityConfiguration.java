@@ -55,7 +55,7 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.addAllowedOrigin("https://logicgatesblog-9da8a03a3c58.herokuapp.com");
+        configuration.addAllowedOrigin("https://logicgatesblog-9da8a03a3c58.herokuapp.com/");
         configuration.setAllowedMethods(Arrays.asList("GET"));
         configuration.setAllowedHeaders(List.of("Authorization"));
         configuration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Origin"));
