@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -41,7 +43,12 @@ public class SecurityConfiguration {
 
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-                        .requestMatchers(WHITE_LIST_URLS)
+                        .requestMatchers(
+                                // Allow access to specific URLs without authentication
+                                Arrays.stream(WHITE_LIST_URLS)
+                                        .map(AntPathRequestMatcher::new)
+                                        .toArray(RequestMatcher[]::new)
+                        )
                         .permitAll()
                         .anyRequest().authenticated()
                 )
