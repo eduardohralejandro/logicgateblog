@@ -86,7 +86,20 @@ public class SecurityConfiguration {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("https://logicgatesblog-9da8a03a3c58.herokuapp.com")); // Set your allowed origins
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Include necessary methods
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "x-auth-token")); // Include necessary headers
+//        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "x-auth-token")); // Include necessary headers
+        configuration.setAllowedHeaders(Arrays.asList(
+                "Authorization",
+                "Content-Type",
+                "Accept",
+                "Origin",
+                "X-Requested-With",
+                "X-Auth-Token",
+                "If-Match",
+                "If-None-Match",
+                "Cookie",
+                "User-Agent",
+                "Referer"
+        ));
         configuration.setExposedHeaders(Arrays.asList("x-auth-token")); // Expose any additional headers if needed
         configuration.setAllowCredentials(true); // Allow credentials like cookies to be sent
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
