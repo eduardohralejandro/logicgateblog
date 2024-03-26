@@ -100,6 +100,7 @@ public class SecurityConfiguration {
                 "User-Agent",
                 "Referer"
         ));
+        configuration.addAllowedHeader("Content-Type");
         configuration.setExposedHeaders(Arrays.asList("x-auth-token")); // Expose any additional headers if needed
         configuration.setAllowCredentials(true); // Allow credentials like cookies to be sent
         /// start
