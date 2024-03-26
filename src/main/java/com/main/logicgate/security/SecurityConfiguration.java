@@ -102,6 +102,11 @@ public class SecurityConfiguration {
         ));
         configuration.setExposedHeaders(Arrays.asList("x-auth-token")); // Expose any additional headers if needed
         configuration.setAllowCredentials(true); // Allow credentials like cookies to be sent
+        /// start
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("*"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        /// end
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
