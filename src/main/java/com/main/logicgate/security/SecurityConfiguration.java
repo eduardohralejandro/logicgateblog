@@ -31,7 +31,6 @@ public class SecurityConfiguration {
             "/articles/all",
             "/register",
             "/api/v1/auth/**",
-            "https://logicgatesblog-9da8a03a3c58.herokuapp.com/api/v1/auth/register",
             "/articles/{articleId}"
     };
 
