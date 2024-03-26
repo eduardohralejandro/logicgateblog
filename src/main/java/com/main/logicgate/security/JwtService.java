@@ -68,7 +68,9 @@ public class JwtService {
     }
 
     private Key getSignInKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(environment.getProperty("security.JwtService.KEY"));
+//        environment.getProperty("security.JwtService.KEY")
+
+        byte[] keyBytes = Decoders.BASE64.decode("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855");
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }
