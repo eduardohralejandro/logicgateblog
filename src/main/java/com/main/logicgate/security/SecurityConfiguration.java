@@ -30,8 +30,8 @@ public class SecurityConfiguration {
     private static final String[] WHITE_LIST_URLS = {
             "/articles/all",
             "/register",
-            "/api/v1/auth/**",
-
+//            "/api/v1/auth/**",
+           "/api/v1/auth/register",
             "/articles/{articleId}"
     };
 
