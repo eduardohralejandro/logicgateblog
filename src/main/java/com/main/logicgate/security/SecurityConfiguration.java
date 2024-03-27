@@ -91,7 +91,7 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         System.out.println("TEST ");
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("https://logicgatesblog-9da8a03a3c58.herokuapp.com" "https://logicgateblog-clientadmin.vercel.app")); // Set your allowed origins
+        configuration.setAllowedOrigins(Arrays.asList("https://logicgatesblog-9da8a03a3c58.herokuapp.com", "https://logicgateblog-clientadmin.vercel.app")); // Set your allowed origins
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Include necessary methods
 //        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "x-auth-token")); // Include necessary headers
         configuration.setAllowedHeaders(Arrays.asList(
