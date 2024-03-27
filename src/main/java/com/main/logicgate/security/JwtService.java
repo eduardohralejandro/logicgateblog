@@ -1,13 +1,11 @@
 package com.main.logicgate.security;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -68,8 +66,7 @@ public class JwtService {
     }
 
     private Key getSignInKey() {
-//        environment.getProperty("security.JwtService.KEY")
-
+        /* environment.getProperty("security.JwtService.KEY")*/
         byte[] keyBytes = Decoders.BASE64.decode("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855");
         return Keys.hmacShaKeyFor(keyBytes);
     }
