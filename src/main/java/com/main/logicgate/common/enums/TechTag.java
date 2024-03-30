@@ -5,5 +5,13 @@ public enum TechTag {
     WEB,
     MOBILE,
     ELECTRONICS,
-    CLOUD
+    CLOUD,
+    HTML,
+    CSS,
+    HTTP,
+    IP,
+    API,
+    EMBEDDEDSYSTEM,
+    CYBERSECURITY,
+    DEVOPS
 }
