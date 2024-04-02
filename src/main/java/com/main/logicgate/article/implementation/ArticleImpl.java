@@ -6,10 +6,13 @@ import com.main.logicgate.article.ArticleService;
 import com.main.logicgate.author.Author;
 import com.main.logicgate.author.AuthorRepository;
 import com.main.logicgate.common.enums.AuthorRole;
+import com.main.logicgate.common.enums.ProgrammingLanguage;
+import com.main.logicgate.common.enums.TechTag;
 import com.main.logicgate.exception.ForbiddenException;
 import com.main.logicgate.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -28,7 +31,13 @@ public class ArticleImpl implements ArticleService {
                 .orElseThrow(() -> new NotFoundException("Author not found with id: " + authorId));
         if (!author.getAuthorRole().equals(AuthorRole.ADMIN)) throw new ForbiddenException("Not enough credentials");
         newRequestArticle.setAuthor(author);
-        articleRepository.save(newRequestArticle);
+        TechTag techTag = newRequestArticle.getTechTag();
+        ProgrammingLanguage programmingLanguage = newRequestArticle.getProgrammingLanguage();
+        if (Arrays.asList(TechTag.values()).contains(techTag) ||   techTag == null  || programmingLanguage == null) {
+            articleRepository.save(newRequestArticle);
+        } else {
+            throw new ForbiddenException("Not exact values for Tech tag");
+        }
     }
 
     @Override
