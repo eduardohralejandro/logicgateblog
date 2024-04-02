@@ -32,10 +32,12 @@ public class Article {
     private String body;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "tech_tag", length = 20)
     private TechTag techTag;
     private String photo;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "programming_language", length = 20)
     private ProgrammingLanguage programmingLanguage;
 
     @CreationTimestamp
